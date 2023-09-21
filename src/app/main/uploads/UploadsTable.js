@@ -247,12 +247,20 @@ function UploadsTable(props) {
       const fileContent = reader.result;
       const workbook = XLSX.read(fileContent, { type: "binary" });
       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+      const rowCount = XLSX.utils.decode_range(worksheet['!ref']).e.r + 1;
       const expectedColumns = ["Franquicia", "FemsaId", "Fecha", "SKU", "CU"]; // Reemplaza con los nombres de las columnas esperadas
 
       const headerRow = XLSX.utils.sheet_to_json(worksheet, { header: 1 })[0];
       const actualColumns = headerRow.map((cell) => cell.toString());
       console.log("testing:, ", actualColumns);
 
+      if (rowCount > 150000) {
+        setAlert({
+          msg: "El archivo contiene mas de 150.000 registros",
+          alert: false,
+        });
+        return; // O realiza alguna acción adicional en caso de error
+      }
       if (actualColumns.length !== expectedColumns.length || !expectedColumns.every((col, index) => col === actualColumns[index])) {
         // El archivo no cumple con las columnas esperadas
         setAlert({
@@ -543,7 +551,15 @@ function UploadsTable(props) {
                     type="file"
                     onChange={(e) => {
                       const file = e.target.files[0];
+                      console.log('file', file.size, 4 * 1024 * 1024)
                       if (!file) {
+                        return;
+                      }
+                      if (file.size > 4 * 1024 * 1024) {
+                        setAlert({
+                          msg: "El archivo no debe pesar mas de 4 MB",
+                          alert: false,
+                        });
                         return;
                       }
                       if (!file.name.toLowerCase().endsWith(".csv")) {
