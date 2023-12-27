@@ -1,9 +1,8 @@
 {
-    "functions": {
-      "api/schedule.js": {
-        "runtime": "nodejs14.x",
-        "maxDuration": 30
+    "crons": [
+      {
+        "path": "/api/sendMails",
+        "schedule": "*/2 * * * *"
       }
-    }
+    ]
   }
-  
