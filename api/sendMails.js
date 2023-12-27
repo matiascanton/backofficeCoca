@@ -20,4 +20,4 @@ module.exports = sendMails;
 // Añadir la ejecución directa si el archivo es ejecutado directamente
 if (require.main === module) {
     sendMails();
-}
+} 
