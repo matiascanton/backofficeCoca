@@ -8,6 +8,7 @@ const sendMails = async () => {
 
         // Mensaje para imprimir en la consola
         console.log('Envío de correos electrónicos realizado con éxito.');
+        console.log('----------------------------------.');
 
         // Mensaje para escribir en un archivo
         fs.appendFileSync('output.log', 'Envío de correos electrónicos realizado con éxito.\n');
