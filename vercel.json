@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "api/sendMails.js": {
+        "events": [{ "schedule": "cron(*/2 * * * *)" }]
+      }
+    }
+  }
+  
