@@ -10,7 +10,7 @@ import { API_VERSION, API_VERSION3, BASE_URL, TOKEN } from "app/configs/settings
 export const getSliders = createAsyncThunk(
   "slidersApp/getSliders",
   async () => {
-    const response = await axios.get(BASE_URL + API_VERSION + "/back/sliders/all", {
+    const response = await axios.get(BASE_URL + API_VERSION + "/back/sliders/promotions", {
       headers: { Authorization: TOKEN },
     });
     let data = await response.data;

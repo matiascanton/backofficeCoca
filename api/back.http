@@ -164,7 +164,7 @@ content-type: application/json
 ##
 ###
 # Get enabled sliders
-GET {{server}}/api/v2/back/sliders
+GET {{server}}/api/v2/back/sliders/promotions
 Authorization: Bearer JOSEBOZZONE
 content-type: application/json
 
