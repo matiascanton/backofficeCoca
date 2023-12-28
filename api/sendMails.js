@@ -1,5 +1,10 @@
 // api/sendMails.js
 
+import { Resend } from 'resend';
+
+const resend = new Resend('re_GJn2n4EZ_NiFUDPTr3gbHKkhjRDs1d9xz');
+
+
 const fs = require('fs');
 
 const sendMails = async () => {
@@ -7,6 +12,12 @@ const sendMails = async () => {
         // Lógica de envío de correos electrónicos aquí
 
         // Mensaje para imprimir en la consola
+        resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: 'matiasacanton@gmail.com',
+            subject: 'Hello World',
+            html: '<p>Congrats on sending your <strong>first email</strong>!</p>'
+        });
         console.log('Envío de correos electrónicos realizado con éxito.');
         console.log('----------------------------------.');
 
